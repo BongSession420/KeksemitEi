@@ -36,7 +36,7 @@ end
 if auto_updater == true then error("Invalid auto-updater lib. Please delete your Stand/Lua Scripts/lib/auto-updater.lua and try again") end
 
 local auto_update_config = {
-    source_url="https://raw.githubusercontent.com/",
+    source_url="https://raw.githubusercontent.com/BongSession420/KeksemitEi/blob/main/SucukmitEi",
     script_relpath=SCRIPT_RELPATH,
     verify_file_begins_with="--",
     check_interval=604800,
