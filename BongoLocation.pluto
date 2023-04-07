@@ -53,11 +53,19 @@ local changelog = [[Locations > Casino Playing Cards Hinzufügt.]]
 
 -----------------------------------------------------------------
 
-menu.divider(menu.my_root(), "- - - >           " .. SCRIPT_NAME .. " v" .. SCRIPT_VERSION .. "           < - - -")
+ChangeloglistexD = menu.list(menu.my_root(), "Was ist neu?")
 
-menu.action(menu.my_root(), "Benachrichtigung", {}, "---> Version "..SCRIPT_VERSION.." <---", function()
+menu.divider(ChangeloglistexD "- - - >           " .. SCRIPT_NAME .. " v" .. SCRIPT_VERSION .. "           < - - -")
+
+menu.action(ChangeloglistexD, "Benachrichtigung", {}, "---> Version "..SCRIPT_VERSION.." <---", function()
   util.toast("       BongoLocation.lua v"..SCRIPT_VERSION.."\n-------- Neustes Update --------\n"..changelog)
 end)
+
+CLinks = menu.list(ChangeloglistexD, "Links")
+menu.hyperlink(CLinks, "Download", "https://raw.githubusercontent.com/BongSession420/KeksemitEi/main/BongoLocation.pluto", "")
+menu.hyperlink(CLinks, "Webseite", "https://sendnudes420.de", "")
+menu.hyperlink(CLinks, "Discord", "https://plexybot.xyz/partner/sendnudes420", "")
+
 
 -----------------------------------------------------------------
 
@@ -75,10 +83,6 @@ CPCliste = menu.list(locations, "Casino Playing Cards")
 -----------------------------------------------------------------
 
 -----------------------------------------------------------------
-menu.action(locations, "Tp to Crack House" , {''}, "crack house", function()
-    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 21.451893, -1899.0763, 22.96029, true,true,true,false)
-    end)
-
 menu.action(CPCliste, "Tp zu alle 54 Cards" , {''}, "", function()
     ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1992.26, 3046.441, 47.215096, true,true,true,false)
     util.toast("[BONGO] CARD 1")
