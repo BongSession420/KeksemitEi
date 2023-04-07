@@ -62,7 +62,7 @@ menu.action(ChangeloglistexD, "Benachrichtigung", {}, "---> Version "..SCRIPT_VE
 end)
 
 CLinks = menu.list(ChangeloglistexD, "Links")
-menu.hyperlink(CLinks, "Download", "https://raw.githubusercontent.com/BongSession420/KeksemitEi/main/BongoLocation.pluto", "")
+menu.hyperlink(CLinks, "Download", "https://github.com/BongSession420/KeksemitEi", "")
 menu.hyperlink(CLinks, "Webseite", "https://sendnudes420.de", "")
 menu.hyperlink(CLinks, "Discord", "https://plexybot.xyz/partner/sendnudes420", "")
 
