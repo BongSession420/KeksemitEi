@@ -55,7 +55,7 @@ local changelog = [[Locations > Casino Playing Cards Hinzufügt.]]
 
 ChangeloglistexD = menu.list(menu.my_root(), "Was ist neu?")
 
-menu.divider(ChangeloglistexD "- - - >           " .. SCRIPT_NAME .. " v" .. SCRIPT_VERSION .. "           < - - -")
+menu.divider(ChangeloglistexD, "- - - >           " .. SCRIPT_NAME .. " v" .. SCRIPT_VERSION .. "           < - - -")
 
 menu.action(ChangeloglistexD, "Benachrichtigung", {}, "---> Version "..SCRIPT_VERSION.." <---", function()
   util.toast("       BongoLocation.lua v"..SCRIPT_VERSION.."\n-------- Neustes Update --------\n"..changelog)
