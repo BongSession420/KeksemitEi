@@ -37,6 +37,13 @@ local auto_update_config = {
     script_relpath = SCRIPT_RELPATH,
 }
 auto_updater.run_auto_update(auto_update_config)
+
+-------------------------------------
+
+if not SCRIPT_SILENT_START and players.get_name(players.user()) ~= "UNBEKANNT" then
+    util.toast("Hallo, " .. players.get_name(players.user()) .. "! \nWillkommen bei BongoLocation!\n" .. "Location Wünsche?\nJoin Discord!")
+end
+
 -------------------------------------
 
 ---------------------
