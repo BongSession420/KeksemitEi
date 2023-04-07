@@ -1,5 +1,5 @@
 -------------------------------------
-local SCRIPT_VERSION = "0.3"
+local SCRIPT_VERSION = "0.4"
 
 ---
 --- Auto-Updater Lib Install
