@@ -1,7 +1,406 @@
 -------------------------------------
 local SCRIPT_VERSION = "0.3"
 
+----------------------------------------
+local SCRIPT_VERSION = "0.4"
+
 ---
+--- Auto-Updater Lib Install
+---
+
+local status, auto_updater = pcall(require, "auto-updater")
+if not status then
+    local auto_update_complete = nil util.toast("Installing auto-updater...", TOAST_ALL)
+    async_http.init("raw.githubusercontent.com", "/hexarobi/stand-lua-auto-updater/main/auto-updater.lua",
+        function(result, headers, status_code)
+            local function parse_auto_update_result(result, headers, status_code)
+                local error_prefix = "Error downloading auto-updater: "
+                if status_code ~= 200 then util.toast(error_prefix..status_code, TOAST_ALL) return false end
+                if not result or result == "" then util.toast(error_prefix.."Found empty file.", TOAST_ALL) return false end
+                filesystem.mkdir(filesystem.scripts_dir() .. "lib")
+                local file = io.open(filesystem.scripts_dir() .. "lib\\auto-updater.lua", "wb")
+                if file == nil then util.toast(error_prefix.."Could not open file for writing.", TOAST_ALL) return false end
+                file:write(result) file:close() util.toast("Successfully installed auto-updater lib", TOAST_ALL) return true
+            end
+            auto_update_complete = parse_auto_update_result(result, headers, status_code)
+        end, function() util.toast("Error downloading auto-updater lib. Update failed to download.", TOAST_ALL) end)
+    async_http.dispatch() local i = 1 while (auto_update_complete == nil and i < 40) do util.yield(250) i = i + 1 end
+    if auto_update_complete == nil then error("Error downloading auto-updater lib. HTTP Request timeout") end
+    auto_updater = require("auto-updater")
+end
+if auto_updater == true then error("Invalid auto-updater lib. Please delete your Stand/Lua Scripts/lib/auto-updater.lua and try again") end
+
+local default_check_interval = 604800
+local auto_update_config = {
+    source_url="https://raw.githubusercontent.com/BongSession420/KeksemitEi/main/BongoLocation.pluto",
+    script_relpath=SCRIPT_RELPATH,
+    switch_to_branch=selected_branch,
+    verify_file_begins_with="--",
+    check_interval=86400,
+    silent_updates=true,
+}
+auto_updater.run_auto_update(auto_update_config)
+
+-------------------------------------
+
+if not SCRIPT_SILENT_START and players.get_name(players.user()) ~= "UNBEKANNT" then
+    util.toast("Hallo, " .. players.get_name(players.user()) .. "! \nWillkommen bei BongoLocation!\n" .. "Location Wünsche?\nJoin Discord!")
+end
+
+-------------------------------------
+
+---------------------
+-- Fanboy Changelog
+---------------------
+local changelog = [[Locations > Epsilon Vehicle Hinzufügt.
+Locations > Hidden Package Hinzufügt.
+Locations > Metal Detector Hinzufügt.]]
+
+-----------------------------------------------------------------
+
+ChangeloglistexD = menu.list(menu.my_root(), "Was ist neu?")
+
+menu.divider(ChangeloglistexD, "- - - >           " .. SCRIPT_NAME .. " v" .. SCRIPT_VERSION .. "           < - - -")
+
+menu.action(ChangeloglistexD, "Benachrichtigung", {}, "---> Version "..SCRIPT_VERSION.." <---", function()
+  util.toast("       BongoLocation.lua v"..SCRIPT_VERSION.."\n-------- Neustes Update --------\n"..changelog)
+end)
+
+CLinks = menu.list(ChangeloglistexD, "Links")
+menu.hyperlink(CLinks, "Download", "https://github.com/BongSession420/KeksemitEi", "")
+menu.hyperlink(CLinks, "Webseite", "https://sendnudes420.de", "")
+menu.hyperlink(CLinks, "Discord", "https://plexybot.xyz/partner/sendnudes420", "")
+
+
+-----------------------------------------------------------------
+
+util.require_natives("natives-1627063482")
+util.keep_running()
+
+------------------------------------------------------------
+
+locations = menu.list(menu.my_root(), "Locations")
+
+-----------------------------------------------------------------
+
+CPCliste = menu.list(locations, "Casino Playing Cards")
+ETliste = menu.list(locations, "Epsilon Tract")
+EVliste = menu.list(locations, "Epsilon Vehicle")
+HPliste = menu.list(locations, "Hidden Package")
+MDliste = menu.list(locations, "Metal Detector")
+
+-----------------------------------------------------------------
+
+-----------------------------------------------------------------
+menu.action(CPCliste, "Tp zu alle 54 Cards" , {''}, "", function()
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1992.26, 3046.441, 47.215096, true,true,true,false)
+    util.toast("[BONGO] CARD 1/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 120.17375, -1297.1831, 29.269527, true,true,true,false)
+    util.toast("[BONGO] CARD 2/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 79.31086, 3704.6626, 41.07031, true,true,true,false)
+    util.toast("[BONGO] CARD 3/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2937.7112, 5325.8604, 101.15282, true,true,true,false)
+    util.toast("[BONGO] CARD 4/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 727.16626, 4190.089, 40.709255, true,true,true,false)
+    util.toast("[BONGO] CARD 5/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -103.069046, 369.1811, 113.26879, true,true,true,false)
+    util.toast("[BONGO] CARD 6/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 99.965645, 6619.539, 33.30726, true,true,true,false)
+    util.toast("[BONGO] CARD 7/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -282.9031, 6226.1255, 31.492655, true,true,true,false)
+    util.toast("[BONGO] CARD 8/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1707.4803, 4921.1016, 42.857258, true,true,true,false)
+    util.toast("[BONGO] CARD 9/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1581.8372, 5204.3965, 4.9562535, true,true,true,false)
+    util.toast("[BONGO] CARD 10/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 10.832758, -1101.1478, 30.604225, true,true,true,false)
+    util.toast("[BONGO] CARD 11/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1690.0665, 3589.119, 35.620926, true,true,true,false)
+    util.toast("[BONGO] CARD 12/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1159.5078, -316.4693, 69.20505, true,true,true,false)
+    util.toast("[BONGO] CARD 13/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2341.8223, 2571.8337, 48.615726, true,true,true,false)
+    util.toast("[BONGO] CARD 14/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -3048.0835, 585.3908, 8.766502, true,true,true,false)
+    util.toast("[BONGO] CARD 15/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -3149.767, 1115.6753, 20.866072, true,true,true,false)
+    util.toast("[BONGO] CARD 16/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1840.4509, -1234.8506, 13.0158415, true,true,true,false)
+    util.toast("[BONGO] CARD 17/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 810.6269, -2978.6614, 6.785358, true,true,true,false)
+    util.toast("[BONGO] CARD 18/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 202.71915, -1645.482, 29.80211, true,true,true,false)
+    util.toast("[BONGO] CARD 19/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 253.22914, 216.08586, 107.279625, true,true,true,false)
+    util.toast("[BONGO] CARD 20/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1166.5851, -233.64073, 37.93561, true,true,true,false)
+    util.toast("[BONGO] CARD 21/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 730.4526, 2514.8994, 73.131424, true,true,true,false)
+    util.toast("[BONGO] CARD 22/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 188.20337, 3076.432, 43.073982, true,true,true,false)
+    util.toast("[BONGO] CARD 23/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 3688.0354, 4569.167, 25.933874, true,true,true,false)
+    util.toast("[BONGO] CARD 24/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1877.0043, 6410.1216, 47.603596, true,true,true,false)
+    util.toast("[BONGO] CARD 25/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2121.0615, 4784.6997, 41.79386, true,true,true,false)
+    util.toast("[BONGO] CARD 26/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 900.0257, 3558.1577, 34.619057, true,true,true,false)
+    util.toast("[BONGO] CARD 27/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2695.2817, 4324.5215, 46.65649, true,true,true,false)
+    util.toast("[BONGO] CARD 28/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1829.4292, 798.4074, 139.05486, true,true,true,false)
+    util.toast("[BONGO] CARD 29/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1203.7283, -1558.7565, 5.1295776, true,true,true,false)
+    util.toast("[BONGO] CARD 30/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -73.25662, -2005.5143, 17.995087, true,true,true,false)
+    util.toast("[BONGO] CARD 31/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1154.1797, -527.2845, 32.706814, true,true,true,false)
+    util.toast("[BONGO] CARD 32/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 990.32025, -1800.3065, 31.249737, true,true,true,false)
+    util.toast("[BONGO] CARD 33/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 827.5288, -2158.6038, 30.394037, true,true,true,false)
+    util.toast("[BONGO] CARD 34/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1512.0002, -103.55824, 55.17646, true,true,true,false)
+    util.toast("[BONGO] CARD 35/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -970.7678, 104.438995, 56.06377, true,true,true,false)
+    util.toast("[BONGO] CARD 36/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -428.67535, 1213.9098, 326.738, true,true,true,false)
+    util.toast("[BONGO] CARD 37/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -167.84401, -297.30887, 40.03303, true,true,true,false)
+    util.toast("[BONGO] CARD 38/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2747.2188, 3465.3262, 56.611668, true,true,true,false)
+    util.toast("[BONGO] CARD 39/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1103.4064, 2714.424, 19.107267, true,true,true,false)
+    util.toast("[BONGO] CARD 40/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 549.47363, -189.20416, 54.481377, true,true,true,false)
+    util.toast("[BONGO] CARD 41/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1287.5886, -1118.8177, 7.2982674, true,true,true,false)
+    util.toast("[BONGO] CARD 42/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1131.5083, -982.0147, 48.164627, true,true,true,false)
+    util.toast("[BONGO] CARD 43/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1028.0562, -2746.7854, 14.379308, true,true,true,false)
+    util.toast("[BONGO] CARD 44/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -538.59045, -1278.4473, 27.332478, true,true,true,false)
+    util.toast("[BONGO] CARD 45/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1326.508, -1651.183, 54.252056, true,true,true,false)
+    util.toast("[BONGO] CARD 46/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 183.31694, -685.20245, 43.590725, true,true,true,false)
+    util.toast("[BONGO] CARD 47/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1487.8463, 1129.2037, 114.39913, true,true,true,false)
+    util.toast("[BONGO] CARD 48/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -2305.55, 3388.0737, 31.042131, true,true,true,false)
+    util.toast("[BONGO] CARD 49/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -522.79047, 4193.5464, 194.73993, true,true,true,false)
+    util.toast("[BONGO] CARD 50/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -748.9765, 5599.8223, 43.024548, true,true,true,false)
+    util.toast("[BONGO] CARD 51/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -288.08182, 2545.3027, 75.41198, true,true,true,false)
+    util.toast("[BONGO] CARD 52/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2565.167, 297.54276, 108.77067, true,true,true,false)
+    util.toast("[BONGO] CARD 53/54")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -408.25812, 585.78723, 124.61445, true,true,true,false)
+    util.toast("[BONGO] CARD 54/54")
+    util.toast("[BONGO] Fertig")
+    end)
+
+------------------------------------------------------
+
+menu.action(ETliste, "Tp zu alle 10 Tracts" , {''}, "", function()
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 498.59875, 5605.502, 797.9093, true,true,true,false)
+    util.toast("[BONGO] TRACT 1/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2658.9639, -1359.068, -18.468351, true,true,true,false)
+    util.toast("[BONGO] TRACT 2/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 25.680492, 7645.3486, 18.850882, true,true,true,false)
+    util.toast("[BONGO] TRACT 3/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -261.6769, 4731.393, 137.02478, true,true,true,false)
+    util.toast("[BONGO] TRACT 4/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -771.95807, -682.3607, 29.86702, true,true,true,false)
+    util.toast("[BONGO] TRACT 5/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1605.7764, 5259.394, 2.0890865, true,true,true,false)
+    util.toast("[BONGO] TRACT 6/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1802.8533, 400.89728, 112.79955, true,true,true,false)
+    util.toast("[BONGO] TRACT 7/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 486.0499, 5615.623, 788.96484, true,true,true,false)
+    util.toast("[BONGO] TRACT 8/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -78.45699, -817.7708, 326.17407, true,true,true,false)
+    util.toast("[BONGO] TRACT 9/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1724.8489, -186.8775, 58.16224, true,true,true,false)
+    util.toast("[BONGO] TRACT 10/10")
+    util.yield(10000)
+    util.toast("[BONGO] Fertig")
+    end)
+
+    -------------------------------------------
+
+    menu.action(EVliste, "Tp zu alle 5 Vehicles" , {''}, "", function()
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -65.51608, 886.17194, 235.80133, true,true,true,false)
+    util.toast("[BONGO] VEHICLE 1/5")
+    util.toast("[BONGO] Name: Benefactor Surano")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 528.9294, -167.92874, 55.13025, true,true,true,false)
+    util.toast("[BONGO] VEHICLE 2/5")
+    util.toast("[BONGO] Name: Declasse Tornado")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1325.32, 262.019, 62.507214, true,true,true,false)
+    util.toast("[BONGO] VEHICLE 3/5")
+    util.toast("[BONGO] Dinka Double T")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -726.29987, -404.66864, 35.015194, true,true,true,false)
+    util.toast("[BONGO] VEHICLE 4/5")
+    util.toast("[BONGO] Name: Enus Super Diamond")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -78.71818, 496.64505, 144.45586, true,true,true,false)
+    util.toast("[BONGO] VEHICLE 5/5")
+    util.toast("[BONGO] Name: Pegassi Vacca")
+    util.toast("[BONGO] Fertig")
+    util.yield(10000)
+    end)
+
+------------------------------------------------------
+
+menu.action(HPliste, "Tp zu alle 13 Packages" , {''}, "", function()
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -996.2989, 6538.755, -29.260582, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 1/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -3243.624, 3669.6072, -30.394197, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 2/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -3179.607, 3041.359, -33.347824, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 3/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -2833.558, -464.2531, -18.316275, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 4/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -132.508, -2869.863, -18.999887, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 5/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 265.4157, -2276.4202, -3.7093515, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 6/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1780.775, -2985.799, -46.8608, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 7/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2690.7712, -1405.6968, -20.184265, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 8/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 3164.5205, -311.9957, -10.4402275, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 9/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 4244.9097, 3603.413, -42.556755, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 10/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 3265.1904, 6409.2295, -47.011044, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 11/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1145.3732, 4910.9614, 220.96863, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 12/13")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1078.0498, 4898.8022, 214.27138, true,true,true,false)
+    util.toast("[BONGO] PACKAGE 13/13")
+    util.toast("[BONGO] Fertig")
+    util.yield(10000)
+    end)
+
+ ------------------------------------------------------
+
+menu.action(MDliste, "Tp zu alle 10 Detectors" , {''}, "", function()
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2826.8665, -683.9045, 1.0599481, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 1/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 2257.494, -2230.9482, 2.2556257, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 2/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1553.6561, -2745.2976, 2.066614, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 3/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -27.26672, -2728.2544, 1.9804024, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 4/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 69.80657, -2187.3618, 1.597684, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 5/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), 616.7361, -2024.9985, 9.442621, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 6/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1813.2039, -2715.9902, 3.9481912, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 7/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -836.59406, -1637.9738, 1.1521723, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 8/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -1804.3632, -976.6261, 2.0888686, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 9/10")
+    util.yield(10000)
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -3116.8591, 201.39046, 3.1194296, true,true,true,false)
+    util.toast("[BONGO] DETECTOR 10/10")
+    util.yield(10000)
+    util.toast("[BONGO] Fertig")
+    end)
+
+    -------------------------------------------
 --- Auto-Updater Lib Install
 ---
 
