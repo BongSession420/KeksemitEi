@@ -29,7 +29,7 @@ if auto_updater == true then error("Ung√ºltige Auto-Updater-Bibliothek. Bitte l√
 
 local default_check_interval = 604800
 local auto_update_config = {
-    source_url="https://raw.githubusercontent.com/BongSession420/KeksemitEi/main/BongoLocation.pluto",
+    source_url="https://raw.githubusercontent.com/BongSession420/KeksemitEi/main/Location.lua",
     script_relpath=SCRIPT_RELPATH,
     switch_to_branch=selected_branch,
     verify_file_begins_with="--",
