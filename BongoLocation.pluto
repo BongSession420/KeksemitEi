@@ -1161,7 +1161,7 @@ menu.action(MP_liste, "Tp zu alle 7 Movies" , {''}, "", function()
 
 -----------------------------------------------------------------
 
-menu.action(MP_liste, "Tp zu alle 9 Clues" , {''}, "", function()
+menu.action(MC_liste, "Tp zu alle 9 Clues" , {''}, "", function()
     ENTITY.SET_ENTITY_COORDS(players.user_ped(), -138.14705, 1911.8759, 197.28426, true,true,true,false)
     util.toast("[BONGO] CLUES 1/9")
     util.yield(10000)
