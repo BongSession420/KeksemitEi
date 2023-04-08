@@ -49,14 +49,25 @@ auto_updater.run_auto_update(auto_update_config)
 
 -------------------------------------
 
-if not SCRIPT_SILENT_START and players.get_name(players.user()) ~= "UNBEKANNT" then
-    util.toast("Hallo, " .. players.get_name(players.user()) .. "! \nWillkommen bei BongoLocation!\n" .. "Location Wünsche?\nJoin Discord!")
-end
-
--------------------------------------
-
 -- Hilfe soooo viele Zahlen xD
 -- Freue mich, wenn ich damit eine Hilfe bin^^
+
+---------------------
+-- Bongo Nachricht
+---------------------
+
+if not SCRIPT_SILENT_START and players.get_name(players.user()) ~= "UNBEKANNT" then
+    util.yield(100)
+    util.toast("Vielen Dank, dass Sie Location.lua von BongSession420#9366 verwenden <3")
+    util.yield(2000)
+    util.show_corner_help("~s~Geladen ~o~ " .. SCRIPT_FILENAME .. " v" .. SCRIPT_VERSION .." ~p~;)\n~s~Du  ~r~Bongo ~g~Fanboy^^")
+end
+
+function on_stp()
+    util.toast("Danke für die Nutzung ".. players.get_name(players.user()) .." :) \nAuf Wiedersehen \n\n[" .. SCRIPT_FILENAME .. "] [v" .. SCRIPT_VERSION .. "] <3")
+    util.show_corner_help("~r~Entladen ~o~ " .. SCRIPT_FILENAME .. "\n~s~Vielen Dank für die Verwendung ~p~<3")
+end
+util.on_stop(on_stp)
 
 ---------------------
 -- Fanboy Changelog
