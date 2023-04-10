@@ -91,6 +91,17 @@ menu.hyperlink(CLinks, "Download", "https://github.com/BongSession420/KeksemitEi
 menu.hyperlink(CLinks, "Webseite", "https://sendnudes420.de", "")
 menu.hyperlink(CLinks, "Discord", "https://plexybot.xyz/partner/sendnudes420", "")
 
+CUpdate = menu.list(ChangeloglistexD, "Update")
+menu.action(CUpdate, "Auf Update überprüfen", {}, "Das Skript wird höchstens täglich automatisch nach Updates suchen, aber Sie können mit dieser Option jederzeit manuell nach Updates suchen.", function()
+    auto_update_config.check_interval = 0
+    if auto_updater.run_auto_update(auto_update_config) then
+        util.toast("Keine Aktualisierungen gefunden")
+    end
+end)
+menu.action(CUpdate, "Saubere Neuinstallation", {}, "Erzwingen Sie ein Update auf die neueste Version, unabhängig von der aktuellen Version.", function()
+    auto_update_config.clean_reinstall = true
+    auto_updater.run_auto_update(auto_update_config)
+end)
 
 -----------------------------------------------------------------
 
@@ -1879,6 +1890,9 @@ menu.action(LDO_liste, "Tp zu ORGANIC 99/100" , {''}, "", function()
 end)    
 menu.action(LDO_liste, "Tp zu ORGANIC 100/100" , {''}, "", function()
     ENTITY.SET_ENTITY_COORDS(players.user_ped(), 1667.9276, -26.473368, 184.76878, true,true,true,false)
+end)
+menu.action(LDO_liste, "Tp zu Abgabe Punkt" , {''}, "Danke SenpaiDaddy#0001 fürs Schicken^^", function()
+    ENTITY.SET_ENTITY_COORDS(players.user_ped(), -199.56316, -1697.2875, 33.347977, true,true,true,false)
 end)
 
 
